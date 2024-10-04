@@ -100,7 +100,7 @@ const Question = ({ question, fetchQuestions, index }) => {
                         </button>
                     </div>
                 </div>
-            ) : (
+            ) : question.isCorrect ? (
                 <div className="bg-gray-900 text-white rounded-lg shadow-lg p-6 mb-4 w-full border border-green-500">
                     <h2 className="text-xl font-bold mb-4">{question.title}</h2>
                     <p className="mb-4">{question.description}</p>
@@ -132,6 +132,40 @@ const Question = ({ question, fetchQuestions, index }) => {
                     )}
                     <div className="flex justify-end pt-4 text-green-500">
                         Solved successfully !
+                    </div>
+                </div>
+            ) : (
+                <div className="bg-gray-900 text-white rounded-lg shadow-lg p-6 mb-4 w-full border border-red-500">
+                    <h2 className="text-xl font-bold mb-4">{question.title}</h2>
+                    <p className="mb-4">{question.description}</p>
+                    {question.options.length === 0 ? (
+                        <div className="mb-4">
+                            <input
+                                type="text"
+                                className={`w-full bg-gray-800 text-white px-4 py-2 rounded outline-none border border-red-500`}
+                                value={question.answer}
+                                readOnly
+                            />
+                        </div>
+                    ) : (
+                        <div className="mb-4 space-y-2">
+                            {question.options.map((option, index) => (
+                                <div
+                                    key={index}
+                                    className={`p-4 border rounded-lg cursor-pointer transition-colors duration-300 ${
+                                        question.optionSelected?.toLocaleLowerCase() ===
+                                        option.toLocaleLowerCase()
+                                            ? "border-red-600"
+                                            : "border-gray-700 "
+                                    } `}
+                                >
+                                    <span className="text-white">{option}</span>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                    <div className="flex justify-end pt-4 text-red-500">
+                        Incorrect answer
                     </div>
                 </div>
             )}

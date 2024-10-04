@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Quiz from "./Pages/Quiz";
 import Register from "./Components/Register";
-import Login from "./Components/Login";
 import Leaderboard from "./Pages/Leaderboard";
 
 const App = () => {
@@ -13,10 +12,9 @@ const App = () => {
             <div className="bg-purple-900 min-h-screen text-white font-mono">
                 <Routes>
                     <Route path="/" element={<Quiz />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/login" element={<Login />} />
+                    <Route path="/start" element={<Register />} />
                     <Route path="/quiz" element={<Quiz />} />
-                    <Route path="/leaderboard" element={<Leaderboard />} />
+                    {/* <Route path="/leaderboard" element={<Leaderboard />} /> */}
                 </Routes>
             </div>
         </Router>
